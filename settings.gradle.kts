@@ -1,6 +1,7 @@
 rootProject.name = "lysine"
 
 include("common-lib")
+include("reimbursement-service")
 
 dependencyResolutionManagement {
     versionCatalogs {

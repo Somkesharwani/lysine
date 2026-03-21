@@ -9,5 +9,5 @@ repositories {
 dependencies {
     // Provide the coordinates for your Gradle plugins here, including their versions
     implementation("io.freefair.gradle:lombok-plugin:8.6")
-    // Removed invalid project dependency
+    // Removed Spring Boot plugin from here
 }
