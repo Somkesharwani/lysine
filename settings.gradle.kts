@@ -1,5 +1,6 @@
 rootProject.name = "lysine"
 
+include("openApi-service")
 include("common-lib")
 include("reimbursement-service")
 
@@ -20,3 +21,4 @@ dependencyResolutionManagement {
         }
     }
 }
+include("openApi-service")
