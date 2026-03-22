@@ -1,0 +1,31 @@
+openapi: 3.0.3
+info:
+  title: Lysine API
+  version: 1.0
+
+paths:
+  /reimbursements:
+     get:
+      tags:
+        - Reimbursements
+      summary: Get reimbursements
+      operationId: getReimbursements
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReimbursementResponse'
+
+components:
+  schemas:
+    ReimbursementResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        amount:
+          type: number
+        status:
+          type: string

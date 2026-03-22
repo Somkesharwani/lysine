@@ -1,0 +1,20 @@
+openapi: 3.0.3
+info:
+  title: Lysine API
+  version: 1.0
+
+tags:
+  - name: Reimbursements
+    description: Endpoints for reimbursement operations
+  - name: Health
+    description: Health and status checks
+
+paths:
+  /reimbursements:
+    $ref: './reimbursement/reimbursement.yml#/paths/~1reimbursements'
+
+
+components:
+  schemas:
+    BaseResponse:
+      $ref: './common/schemas.yml#/components/schemas/BaseResponse'
