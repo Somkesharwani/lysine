@@ -2,11 +2,14 @@ spring:
   application:
     name: reimbursement-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/lysine_db
-    username: postgres
-    password: password
+    url: ${DB_URL:jdbc:h2:mem:lysine_db;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE}
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:}
 
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+server:
+  port: ${SERVER_PORT:8080}
