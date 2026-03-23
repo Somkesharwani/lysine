@@ -19,3 +19,10 @@ dependencies {
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
+
+subprojects {
+    apply(plugin = "java")
+    tasks.register("buildAll") {
+        dependsOn(subprojects.map { it.tasks.named("build") })
+    }
+}

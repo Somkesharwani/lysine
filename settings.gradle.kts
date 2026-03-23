@@ -21,4 +21,10 @@ dependencyResolutionManagement {
         }
     }
 }
-include("openApi-service")
+
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
