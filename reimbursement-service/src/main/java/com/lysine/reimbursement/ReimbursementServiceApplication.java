@@ -8,7 +8,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.env.Environment;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.lysine")
 public class ReimbursementServiceApplication {
 
   private static final Logger log = LoggerFactory.getLogger(ReimbursementServiceApplication.class);

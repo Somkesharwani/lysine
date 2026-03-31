@@ -24,6 +24,7 @@
             <option value="$PROJECT_DIR$/common-lib" />
             <option value="$PROJECT_DIR$/openApi-service" />
             <option value="$PROJECT_DIR$/reimbursement-service" />
+            <option value="$PROJECT_DIR$/user-service" />
           </set>
         </option>
       </GradleProjectSettings>

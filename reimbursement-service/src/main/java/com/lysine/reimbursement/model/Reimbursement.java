@@ -1,43 +1,34 @@
 package com.lysine.reimbursement.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.lysine.common.model.BaseEntity;
+import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.RelationTargetAuditMode;
 
+@Audited
 @Entity
-public class Reimbursement {
-  @Id private String id;
-  private String status;
+public class Reimbursement extends BaseEntity {
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  private String id;
+
+  @Column(nullable = false)
+  private Status status;
+
+  @Column(nullable = false)
+  private ReimbursementType reimbursementType;
+
+  @Column(nullable = false)
+  private String userId;
+
+  @Column(nullable = false)
   private String description;
 
-  public Reimbursement() {}
-
-  public Reimbursement(String id, String status, String description) {
-    this.id = id;
-    this.status = status;
-    this.description = description;
-  }
-
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  public String getStatus() {
-    return status;
-  }
-
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
+  @Audited(targetAuditMode = RelationTargetAuditMode.AUDITED)
+  @OneToMany(
+      mappedBy = "reimbursement",
+      cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+  private List<ReimbursementDocument> documents = new ArrayList<>();
 }

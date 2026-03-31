@@ -22,8 +22,8 @@ dependencies {
 }
 
 subprojects {
-    apply(plugin = "java")
-    tasks.register("buildAll") {
-        dependsOn(subprojects.map { it.tasks.named("build") })
-    }
+	apply(plugin = "java")
+	tasks.register("buildAll") {
+		dependsOn(subprojects.map { it.tasks.named("build") })
+	}
 }
