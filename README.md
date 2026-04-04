@@ -30,5 +30,3 @@ The project follows a **microservices architecture** with the following modules:
 - **Language**: Java
 - **Build Tool**: Gradle (Kotlin DSL)
 - **Architecture**: Microservices
-
-## Project Structure
