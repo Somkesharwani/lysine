@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="/settings.gradle (snapshot).kts">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="/settings.gradle (snapshot).kts" />
+              <option name="originalContent" value="rootProject.name = &quot;reimbursement-service&quot;&#10;&#10;pluginManagement {&#10;    repositories {&#10;        gradlePluginPortal()&#10;        mavenCentral()&#10;    }&#10;    plugins {&#10;        id(&quot;io.freefair.lombok&quot;) version &quot;8.6&quot;&#10;        id(&quot;com.diffplug.spotless&quot;) version &quot;6.22.0&quot;&#10;    }&#10;}&#10;&#10;includeBuild(&quot;../openApi-service&quot;)&#10;includeBuild(&quot;../common-lib&quot;)&#10;" />
+              <option name="updatedContent" value="rootProject.name = &quot;reimbursement-service&quot;&#10;&#10;pluginManagement {&#10;    repositories {&#10;        gradlePluginPortal()&#10;        mavenCentral()&#10;    }&#10;    plugins {&#10;        id(&quot;io.freefair.lombok&quot;) version &quot;8.6&quot;&#10;        id(&quot;com.diffplug.spotless&quot;) version &quot;6.22.0&quot;&#10;    }&#10;}&#10;&#10;dependencyResolutionManagement {&#10;    versionCatalogs {&#10;        create(&quot;springboot&quot;) {&#10;            library(&quot;bom&quot;, &quot;org.springframework.boot:spring-boot-dependencies:3.3.2&quot;)&#10;        }&#10;    }&#10;}&#10;&#10;includeBuild(&quot;../openApi-service&quot;)&#10;includeBuild(&quot;../common-lib&quot;)" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/common-lib/build.gradle.kts">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/common-lib/build.gradle.kts" />
+              <option name="originalContent" value="plugins {&#10;    id(&quot;java-library&quot;)&#10;    id(&quot;java-conventions&quot;)&#10;}&#10;&#10;dependencies {&#10;    implementation(platform(springboot.bom))&#10;    implementation(&quot;org.springframework.boot:spring-boot-starter&quot;)&#10;    implementation(&quot;org.springframework.boot:spring-boot-starter-web&quot;)&#10;    implementation(&quot;org.springframework.boot:spring-boot-starter-data-jpa&quot;)&#10;    implementation(&quot;org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0&quot;)&#10;&#10;    runtimeOnly(&quot;org.postgresql:postgresql&quot;)&#10;    api(&quot;org.slf4j:slf4j-api&quot;)&#10;}" />
+              <option name="updatedContent" value="plugins {&#13;&#10;    id(&quot;java-library&quot;)&#13;&#10;    id(&quot;java&quot;)&#13;&#10;    id(&quot;io.freefair.lombok&quot;)&#13;&#10;    id(&quot;com.diffplug.spotless&quot;)&#13;&#10;}&#13;&#10;&#13;&#10;repositories {&#13;&#10;    mavenCentral()&#13;&#10;}&#13;&#10;&#13;&#10;java {&#13;&#10;    toolchain {&#13;&#10;        languageVersion.set(JavaLanguageVersion.of(21))&#13;&#10;    }&#13;&#10;}&#13;&#10;&#13;&#10;spotless {&#13;&#10;    java {&#13;&#10;        target(&quot;**/*.java&quot;)&#13;&#10;        googleJavaFormat(&quot;1.17.0&quot;)&#13;&#10;    }&#13;&#10;&#13;&#10;    kotlin {&#13;&#10;        target(&quot;**/*.kt&quot;)&#13;&#10;        ktlint(&quot;0.48.2&quot;)&#13;&#10;    }&#13;&#10;&#13;&#10;    format(&quot;yaml&quot;) {&#13;&#10;        target(&quot;**/*.yml&quot;, &quot;**/*.yaml&quot;)&#13;&#10;        prettier()&#13;&#10;    }&#13;&#10;}&#13;&#10;&#13;&#10;dependencies {&#13;&#10;    implementation(platform(springboot.bom))&#13;&#10;    implementation(&quot;org.springframework.boot:spring-boot-starter&quot;)&#13;&#10;    implementation(&quot;org.springframework.boot:spring-boot-starter-web&quot;)&#13;&#10;    implementation(&quot;org.springframework.boot:spring-boot-starter-data-jpa&quot;)&#13;&#10;    implementation(&quot;org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0&quot;)&#13;&#10;&#13;&#10;    runtimeOnly(&quot;org.postgresql:postgresql&quot;)&#13;&#10;    api(&quot;org.slf4j:slf4j-api&quot;)&#13;&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/common-lib/settings.gradle.kts">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/common-lib/settings.gradle.kts" />
+              <option name="updatedContent" value="rootProject.name = &quot;common-lib&quot;&#10;&#10;pluginManagement {&#10;    repositories {&#10;        gradlePluginPortal()&#10;        mavenCentral()&#10;    }&#10;    plugins {&#10;        id(&quot;io.freefair.lombok&quot;) version &quot;8.6&quot;&#10;        id(&quot;com.diffplug.spotless&quot;) version &quot;6.22.0&quot;&#10;    }&#10;}&#10;&#10;dependencyResolutionManagement {&#10;    versionCatalogs {&#10;        create(&quot;springboot&quot;) {&#10;            library(&quot;bom&quot;, &quot;org.springframework.boot:spring-boot-dependencies:3.3.2&quot;)&#10;        }&#10;    }&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/openApi-service/settings.gradle.kts">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/openApi-service/settings.gradle.kts" />
+              <option name="updatedContent" value="rootProject.name = &quot;openApi-service&quot;&#10;&#10;pluginManagement {&#10;    repositories {&#10;        gradlePluginPortal()&#10;        mavenCentral()&#10;    }&#10;}&#10;&#10;dependencyResolutionManagement {&#10;    versionCatalogs {&#10;        create(&quot;springboot&quot;) {&#10;            library(&quot;bom&quot;, &quot;org.springframework.boot:spring-boot-dependencies:3.3.2&quot;)&#10;        }&#10;    }&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/reimbursement-service/build.gradle.kts">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/reimbursement-service/build.gradle.kts" />
+              <option name="originalContent" value="&#10;plugins {&#10;&#9;id(&quot;java-conventions&quot;)&#10;&#9;id(&quot;org.springframework.boot&quot;) version &quot;3.3.2&quot;&#10;&#9;id(&quot;io.spring.dependency-management&quot;) version &quot;1.1.5&quot;&#10;}&#10;&#10;dependencies {&#10;&#9;implementation(project(&quot;:openApi-service&quot;))&#10;&#9;implementation(project(&quot;:common-lib&quot;))&#10;&#10;&#9;implementation(platform(springboot.bom))&#10;&#10;&#9;implementation(&quot;org.springframework.boot:spring-boot-starter-web&quot;)&#10;&#9;implementation(&quot;org.springframework.boot:spring-boot-starter-data-jpa&quot;)&#10;&#9;implementation(&quot;org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0&quot;)&#10;&#9;implementation(&quot;org.hibernate.orm:hibernate-envers&quot;)&#10;&#9;implementation(&quot;org.mapstruct:mapstruct:1.5.5.Final&quot;)&#10;&#9;annotationProcessor(&quot;org.mapstruct:mapstruct-processor:1.5.5.Final&quot;)&#10;&#10;&#9;runtimeOnly(&quot;org.postgresql:postgresql&quot;)&#10;&#10;&#9;testImplementation(&quot;org.springframework.boot:spring-boot-starter-test&quot;)&#10;}&#10;&#10;subprojects {&#10;    apply(plugin = &quot;java&quot;)&#10;    tasks.register(&quot;buildAll&quot;) {&#10;        dependsOn(subprojects.map { it.tasks.named(&quot;build&quot;) })&#10;    }&#10;}&#10;" />
+              <option name="updatedContent" value="plugins {&#10;&#9;id(&quot;java&quot;)&#10;&#9;id(&quot;io.freefair.lombok&quot;)&#10;&#9;id(&quot;com.diffplug.spotless&quot;)&#10;&#9;id(&quot;org.springframework.boot&quot;) version &quot;3.3.2&quot;&#10;&#9;id(&quot;io.spring.dependency-management&quot;) version &quot;1.1.5&quot;&#10;}&#10;&#10;repositories {&#10;&#9;mavenCentral()&#10;}&#10;&#10;java {&#10;&#9;toolchain {&#10;&#9;&#9;languageVersion.set(JavaLanguageVersion.of(21))&#10;&#9;}&#10;}&#10;&#10;spotless {&#10;&#9;java {&#10;&#9;&#9;target(&quot;**/*.java&quot;)&#10;&#9;&#9;googleJavaFormat(&quot;1.17.0&quot;)&#10;&#9;}&#10;&#10;&#9;kotlin {&#10;&#9;&#9;target(&quot;**/*.kt&quot;)&#10;&#9;&#9;ktlint(&quot;0.48.2&quot;)&#10;&#9;}&#10;&#10;&#9;format(&quot;yaml&quot;) {&#10;&#9;&#9;target(&quot;**/*.yml&quot;, &quot;**/*.yaml&quot;)&#10;&#9;&#9;prettier()&#10;&#9;}&#10;}&#10;&#10;dependencies {&#10;&#9;implementation(project(&quot;:openApi-service&quot;))&#10;&#9;implementation(project(&quot;:common-lib&quot;))&#10;&#10;&#9;implementation(platform(springboot.bom))&#10;&#10;&#9;implementation(&quot;org.springframework.boot:spring-boot-starter-web&quot;)&#10;&#9;implementation(&quot;org.springframework.boot:spring-boot-starter-data-jpa&quot;)&#10;&#9;implementation(&quot;org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0&quot;)&#10;&#9;implementation(&quot;org.hibernate.orm:hibernate-envers&quot;)&#10;&#9;implementation(&quot;org.mapstruct:mapstruct:1.5.5.Final&quot;)&#10;&#9;annotationProcessor(&quot;org.mapstruct:mapstruct-processor:1.5.5.Final&quot;)&#10;&#10;&#9;runtimeOnly(&quot;org.postgresql:postgresql&quot;)&#10;&#10;&#9;testImplementation(&quot;org.springframework.boot:spring-boot-starter-test&quot;)&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/reimbursement-service/src/main/java/com/lysine/reimbursement/service/ReimbursementService.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/reimbursement-service/src/main/java/com/lysine/reimbursement/service/ReimbursementService.java" />
+              <option name="originalContent" value="package com.lysine.reimbursement.service;&#10;&#10;import com.lysine.reimbursement.model.Reimbursement;&#10;import com.lysine.reimbursement.repository.ReimbursementRepository;&#10;import lombok.AllArgsConstructor;&#10;import org.springframework.stereotype.Service;&#10;&#10;@Service&#10;@AllArgsConstructor&#10;public class ReimbursementService {&#10;&#10;  private ReimbursementRepository reimbursementRepository;&#10;&#10;  public Reimbursement saveReimbursement(Reimbursement reimbursement) {&#10;    return reimbursementRepository.save(reimbursement);&#10;  }&#10;}&#10;" />
+              <option name="updatedContent" value="package com.lysine.reimbursement.service;&#10;&#10;import com.lysine.reimbursement.model.Reimbursement;&#10;import com.lysine.reimbursement.repository.ReimbursementRepository;&#10;import lombok.AllArgsConstructor;&#10;import org.springframework.beans.factory.annotation.Autowired;&#10;import org.springframework.stereotype.Service;&#10;&#10;@Service&#10;@AllArgsConstructor&#10;public class ReimbursementService {&#10;&#10;  @Autowired&#10;  private ReimbursementRepository reimbursementRepository;&#10;&#10;  public Reimbursement saveReimbursement(Reimbursement reimbursement) {&#10;    return reimbursementRepository.save(reimbursement);&#10;  }&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

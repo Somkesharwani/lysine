@@ -1,6 +1,36 @@
 plugins {
     id("java-library")
-    id("java-conventions")
+
+    id("java")
+    id("io.freefair.lombok")
+    id("com.diffplug.spotless")
+}
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}
+
+spotless {
+    java {
+        target("**/*.java")
+        googleJavaFormat("1.17.0")
+    }
+
+    kotlin {
+        target("**/*.kt")
+        ktlint("0.48.2")
+    }
+
+    format("yaml") {
+        target("**/*.yml", "**/*.yaml")
+        prettier()
+    }
 }
 
 dependencies {

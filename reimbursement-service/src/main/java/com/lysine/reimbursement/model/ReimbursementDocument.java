@@ -15,7 +15,7 @@ public class ReimbursementDocument extends BaseEntity {
   @GeneratedValue(strategy = GenerationType.UUID)
   private String id;
 
-  @Column(name = "lable", nullable = false)
+  @Column(name = "label", nullable = false)
   private String label;
 
   @Column(nullable = false)
