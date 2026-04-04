@@ -26,6 +26,11 @@ spotless {
         target("**/*.kt")
         ktlint("0.48.2")
     }
+
+    format("yaml") {
+        target("**/*.yml", "**/*.yaml")
+        prettier()
+    }
 }
 
 dependencies {

@@ -4,9 +4,13 @@ import com.lysine.common.model.BaseEntity;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.RelationTargetAuditMode;
 
+@Getter
+@Setter
 @Audited
 @Entity
 public class Reimbursement extends BaseEntity {
