@@ -1,6 +1,8 @@
 rootProject.name = "lysine"
 
+include("openApi-service")
 include("common-lib")
+include("user-service")
 include("reimbursement-service")
 
 dependencyResolutionManagement {
@@ -18,5 +20,12 @@ dependencyResolutionManagement {
             // library("lib1", "group:artifact:version")
             // library("lib2", "group:artifact:version")
         }
+    }
+}
+
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
     }
 }

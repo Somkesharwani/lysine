@@ -2,9 +2,9 @@ spring:
   application:
     name: reimbursement-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/lysine_db
+    url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
-    password: password
+    password: postgres
 
   jpa:
     hibernate:
