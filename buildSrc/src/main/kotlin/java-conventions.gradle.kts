@@ -2,8 +2,8 @@
 
 plugins {
     java
-    id("io.freefair.lombok") // Note: version is NOT specified here. See Step 7
-    // add any other Gradle plugins here
+    id("io.freefair.lombok")
+    id("com.diffplug.spotless")
 }
 
 repositories {
@@ -13,6 +13,23 @@ repositories {
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}
+
+spotless {
+    java {
+        target("**/*.java")
+        googleJavaFormat("1.17.0")
+    }
+
+    kotlin {
+        target("**/*.kt")
+        ktlint("0.48.2")
+    }
+
+    format("yaml") {
+        target("**/*.yml", "**/*.yaml")
+        prettier()
     }
 }
 

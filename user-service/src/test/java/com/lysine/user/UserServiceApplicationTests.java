@@ -1,10 +1,10 @@
-package com.lysine.reimbursement;
+package com.lysine.user;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ReimbursementServiceApplicationTests {
+class UserServiceApplicationTests {
 
   @Test
   void contextLoads() {}

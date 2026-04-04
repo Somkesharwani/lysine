@@ -5,11 +5,11 @@ info:
 
 paths:
   /reimbursements:
-     get:
+    get:
       tags:
-        - Reimbursements
-      summary: Get reimbursements
-      operationId: getReimbursements
+        - Reimbursement
+      summary: Get reimbursement
+      operationId: getReimbursement
       responses:
         '200':
           description: success
@@ -17,15 +17,113 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReimbursementResponse'
+    post:
+      tags:
+        - Reimbursement
+      summary: submit reimbursement request with attached docs and label
+      operationId: submitReimbursement
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - reimbursement
+              properties:
+                reimbursement:
+                  $ref: '#/components/schemas/ReimbursementDto'
+            encoding:
+              reimbursement:
+                contentType: application/json
+      responses:
+        '200':
+          description: Files uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref : '#/components/schemas/ReimbursementDto'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
 
 components:
   schemas:
-    ReimbursementResponse:
+    Status:
+      type: string
+      enum:
+        - PENDING
+        - APPROVED
+        - CLOSED
+        - REJECTED
+        - SUBMIT
+        - PROCESSING
+        - CANCEL
+        - DELETED
+
+    ReimbursementType:
+      type: string
+      enum:
+        - REGULAR
+        - SALE
+        - MATERIAL
+        - LOGISTICS
+        - MISCELLANEOUS
+
+    ReimbursementDocumentDto:
       type: object
       properties:
         id:
           type: string
-        amount:
-          type: number
-        status:
+        label:
           type: string
+        file:
+          type: string
+          format: binary
+        filePath:
+          type: string
+        reimbursementId:
+          type: string
+
+    ReimbursementDto:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          $ref: '#/components/schemas/Status'
+        reimbursementType:
+          $ref: '#/components/schemas/ReimbursementType'
+        userId:
+          type: string
+        description:
+          type: string
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReimbursementDocumentDto'
+
+    ReimbursementResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Files uploaded successfully"
+        status:
+          $ref: '#/components/schemas/Status'
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+          example: "Validation failed"
