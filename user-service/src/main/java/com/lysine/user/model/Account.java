@@ -2,10 +2,15 @@ package com.lysine.user.model;
 
 import com.lysine.common.model.BaseEntity;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.hibernate.envers.Audited;
 
+@Audited
 @Entity
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class Account extends BaseEntity {
-
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   private String id;
@@ -13,19 +18,21 @@ public class Account extends BaseEntity {
   @Column(nullable = false)
   private String name;
 
-  private String companyName;
-
   @Column(unique = true, nullable = false)
-  private String EmpId;
+  private String empId;
 
   @Column(nullable = false)
-  private boolean isPartnerAccount;
+  private String email;
 
   @Column(nullable = false)
-  @ManyToOne
+  private String passwordHash;
+
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_group_id", nullable = false)
-  private String userGroupId;
+  private UserGroup company;
 
-  @Column(nullable = false)
-  private String password;
+  // 🔥 VERY IMPORTANT
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "manager_id")
+  private Account manager;
 }

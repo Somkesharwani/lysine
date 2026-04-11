@@ -3,39 +3,36 @@ package com.lysine.reimbursement.model;
 import com.lysine.common.model.BaseEntity;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.envers.Audited;
+import org.springframework.data.annotation.Id;
 
-@Getter
+@ToString
 @Setter
+@Getter
+@SuperBuilder
 @Audited
 @Entity
-public class Reimbursement extends BaseEntity {
+public class ApprovalWorkflow extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   private String id;
 
-  @Column(name = "user_id", nullable = false)
-  private String userId;
-
   @Column(name = "company_id", nullable = false)
   private String companyId;
 
-  @Enumerated(EnumType.STRING)
-  private Status status;
+  @Column(nullable = false)
+  private String name;
 
   @Enumerated(EnumType.STRING)
   private ReimbursementType reimbursementType;
 
-  private BigDecimal amount;
+  private BigDecimal minAmount;
+  private BigDecimal maxAmount;
 
-  private LocalDate expenseDate;
-
-  private String description;
-
-  private LocalDateTime submittedAt;
+  private Boolean isActive = true;
 }

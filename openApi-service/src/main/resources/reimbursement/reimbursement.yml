@@ -49,6 +49,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /approve:
+    get:
+      tags:
+        - Reimbursement
+      summary: Get reimbursement for approver
+      operationId: getReimbursementForApprover
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReimbursementResponse'
 
 
 components:
@@ -118,6 +131,16 @@ components:
           example: "Files uploaded successfully"
         status:
           $ref: '#/components/schemas/Status'
+
+    ApproveDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
     Error:
       type: object
       properties:

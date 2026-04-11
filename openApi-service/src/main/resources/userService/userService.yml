@@ -1,0 +1,492 @@
+openapi: 3.0.3
+info:
+  title: Lysine API
+  version: 1.0
+
+paths:
+  # ──────────────────────────────────────────
+  # ACCOUNT ENDPOINTS
+  # ──────────────────────────────────────────
+
+  /userService/accounts:
+    get:
+      tags: [ UserService ]
+      summary: List all accounts
+      operationId: getAllAccounts
+      responses:
+        '200':
+          description: List of all accounts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AccountResponse'
+
+    post:
+      tags: [ UserService ]
+      summary: Create a new account
+      operationId: createAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountCreateRequest'
+      responses:
+        '201':
+          description: Account created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict — empId or email already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /userService/accounts/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Account UUID
+        schema:
+          type: string
+          format: uuid
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+
+    get:
+      tags: [ UserService ]
+      summary: Get account by ID
+      operationId: getAccountById
+      responses:
+        '200':
+          description: Account found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+        '404':
+          description: Account not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    patch:
+      tags: [ UserService ]
+      summary: Update an account
+      operationId: updateAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountUpdateRequest'
+      responses:
+        '200':
+          description: Account updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Account not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    delete:
+      tags: [ UserService ]
+      summary: Delete an account
+      operationId: deleteAccount
+      responses:
+        '204':
+          description: Account deleted successfully
+        '404':
+          description: Account not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  # ──────────────────────────────────────────
+  # USERGROUP ENDPOINTS
+  # ──────────────────────────────────────────
+
+  /userService/user-groups:
+    get:
+      tags: [ UserService ]
+      summary: List all user groups
+      operationId: getAllUserGroups
+      responses:
+        '200':
+          description: List of all user groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserGroupResponse'
+
+    post:
+      tags: [ UserService ]
+      summary: Create a new user group
+      operationId: createUserGroup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserGroupCreateRequest'
+      responses:
+        '201':
+          description: User group created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserGroupResponse'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /userService/user-groups/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: UserGroup UUID
+        schema:
+          type: string
+          format: uuid
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+
+    get:
+      tags: [ UserService ]
+      summary: Get user group by ID
+      operationId: getUserGroupById
+      responses:
+        '200':
+          description: User group found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserGroupResponse'
+        '404':
+          description: User group not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    patch:
+      tags: [ UserService ]
+      summary: Update a user group
+      operationId: updateUserGroup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserGroupUpdateRequest'
+      responses:
+        '200':
+          description: User group updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserGroupResponse'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: User group not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    delete:
+      tags: [ UserService ]
+      summary: Delete a user group
+      operationId: deleteUserGroup
+      responses:
+        '204':
+          description: User group deleted successfully
+        '404':
+          description: User group not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+
+    # ──────────────────────────────────────────
+    # ACCOUNT — REQUEST SCHEMAS
+    # ──────────────────────────────────────────
+
+    AccountCreateRequest:
+      type: object
+      description: Payload for creating a new account
+      required:
+        - name
+        - empId
+        - email
+        - password
+        - companyId
+      properties:
+        name:
+          type: string
+          description: Full name of the employee
+          example: Jane Doe
+        empId:
+          type: string
+          description: Unique employee ID
+          example: EMP-00123
+        email:
+          type: string
+          format: email
+          description: Employee email address
+          example: jane.doe@company.com
+        password:
+          type: string
+          format: password
+          description: Plain-text password (hashed before storage)
+          example: s3cur3P@ssw0rd
+        companyId:
+          type: string
+          format: uuid
+          description: ID of the UserGroup this account belongs to
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        managerId:
+          type: string
+          format: uuid
+          nullable: true
+          description: ID of the manager's account (optional)
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+
+    AccountUpdateRequest:
+      type: object
+      description: Payload for updating an existing account. Only provided fields are updated.
+      properties:
+        name:
+          type: string
+          nullable: true
+          description: Updated full name
+          example: Jane Smith
+        email:
+          type: string
+          format: email
+          nullable: true
+          description: Updated email address
+          example: jane.smith@company.com
+        password:
+          type: string
+          format: password
+          nullable: true
+          description: New plain-text password (hashed before storage)
+          example: newP@ssw0rd!
+        companyId:
+          type: string
+          format: uuid
+          nullable: true
+          description: ID of the new UserGroup
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        managerId:
+          type: string
+          format: uuid
+          nullable: true
+          description: ID of the new manager, or null to remove manager
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+
+    # ──────────────────────────────────────────
+    # ACCOUNT — RESPONSE SCHEMAS
+    # ──────────────────────────────────────────
+
+    AccountResponse:
+      type: object
+      description: Full account details
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique account UUID
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        name:
+          type: string
+          description: Full name of the employee
+          example: Jane Doe
+        empId:
+          type: string
+          description: Unique employee ID
+          example: EMP-00123
+        email:
+          type: string
+          format: email
+          description: Employee email address
+          example: jane.doe@company.com
+        company:
+          $ref: '#/components/schemas/UserGroupSummary'
+        manager:
+          allOf:
+            - $ref: '#/components/schemas/AccountSummary'
+          nullable: true
+          description: The account's direct manager, or null if none
+
+    AccountSummary:
+      type: object
+      description: Lightweight account reference, used when embedding an account inside other responses
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        name:
+          type: string
+          example: John Manager
+        empId:
+          type: string
+          example: EMP-00001
+        email:
+          type: string
+          format: email
+          example: john.manager@company.com
+
+    # ──────────────────────────────────────────
+    # USERGROUP — REQUEST SCHEMAS
+    # ──────────────────────────────────────────
+
+    UserGroupCreateRequest:
+      type: object
+      description: Payload for creating a new user group
+      required:
+        - name
+        - orgId
+        - organisationName
+      properties:
+        name:
+          type: string
+          description: Name of the user group
+          example: Engineering
+        orgId:
+          type: string
+          description: External organisation ID this group belongs to
+          example: ORG-001
+        organisationName:
+          type: string
+          description: Display name of the organisation
+          example: Lysine Corp
+
+    UserGroupUpdateRequest:
+      type: object
+      description: Payload for updating an existing user group. Only provided fields are updated.
+      properties:
+        name:
+          type: string
+          nullable: true
+          description: Updated group name
+          example: Platform Engineering
+        orgId:
+          type: string
+          nullable: true
+          description: Updated organisation ID
+          example: ORG-002
+        organisationName:
+          type: string
+          nullable: true
+          description: Updated organisation display name
+          example: Lysine Holdings
+
+    # ──────────────────────────────────────────
+    # USERGROUP — RESPONSE SCHEMAS
+    # ──────────────────────────────────────────
+
+    UserGroupResponse:
+      type: object
+      description: Full user group details
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique UserGroup UUID
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        name:
+          type: string
+          description: Name of the user group
+          example: Engineering
+        orgId:
+          type: string
+          description: External organisation ID
+          example: ORG-001
+        organisationName:
+          type: string
+          description: Display name of the organisation
+          example: Lysine Corp
+
+    UserGroupSummary:
+      type: object
+      description: Lightweight user group reference embedded in account responses
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: UserGroup UUID
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        name:
+          type: string
+          description: Group name
+          example: Engineering
+        organisationName:
+          type: string
+          description: Organisation display name
+          example: Lysine Corp
+
+    # ──────────────────────────────────────────
+    # COMMON
+    # ──────────────────────────────────────────
+
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        status:
+          type: integer
+          description: HTTP status code
+          example: 404
+        error:
+          type: string
+          description: Short error label
+          example: Not Found
+        message:
+          type: string
+          description: Human-readable error detail
+          example: Account with id 3fa85f64-5717-4562-b3fc-2c963f66afa6 was not found
+        timestamp:
+          type: string
+          format: date-time
+          description: Time the error occurred
+          example: '2024-08-15T10:30:00Z'

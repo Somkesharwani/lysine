@@ -8,11 +8,21 @@ tags:
     description: Endpoints for reimbursement operations
   - name: Health
     description: Health and status checks
+  - name: UserService
+    description: User and group management
 
 paths:
   /reimbursements:
     $ref: './reimbursement/reimbursement.yml#/paths/~1reimbursements'
 
+  /userService/accounts:
+    $ref: './userService/userService.yml#/paths/~1userService~1accounts'
+  /userService/accounts/{id}:
+    $ref: './userService/userService.yml#/paths/~1userService~1accounts~1{id}'
+  /userService/user-groups:
+    $ref: './userService/userService.yml#/paths/~1userService~1user-groups'
+  /userService/user-groups/{id}:
+    $ref: './userService/userService.yml#/paths/~1userService~1user-groups~1{id}'
 
 components:
   schemas:
