@@ -1,5 +1,6 @@
 package com.lysine.user.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lysine.common.model.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -10,6 +11,11 @@ import org.hibernate.envers.Audited;
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = true)
+@Table(
+    indexes = {
+      @Index(name = "idx_role_company", columnList = "role, user_group_id"),
+      @Index(name = "idx_manager", columnList = "manager_id")
+    })
 public class Account extends BaseEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
@@ -32,7 +38,11 @@ public class Account extends BaseEntity {
   private UserGroup company;
 
   // 🔥 VERY IMPORTANT
+  @JsonIgnore
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "manager_id")
   private Account manager;
+
+  @Column(nullable = false)
+  private String role;
 }

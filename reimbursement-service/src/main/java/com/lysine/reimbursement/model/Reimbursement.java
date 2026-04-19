@@ -25,6 +25,7 @@ public class Reimbursement extends BaseEntity {
   @Column(name = "company_id", nullable = false)
   private String companyId;
 
+  @Column(nullable = false)
   @Enumerated(EnumType.STRING)
   private Status status;
 
@@ -38,4 +39,11 @@ public class Reimbursement extends BaseEntity {
   private String description;
 
   private LocalDateTime submittedAt;
+
+  private String approvedBy;
+  private LocalDateTime approvedAt;
+  private String rejectionReason;
+
+  @Column(name = "workflow_id")
+  private String workflowId;
 }

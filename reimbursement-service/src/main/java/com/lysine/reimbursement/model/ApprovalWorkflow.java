@@ -6,14 +6,12 @@ import java.math.BigDecimal;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import lombok.experimental.SuperBuilder;
 import org.hibernate.envers.Audited;
 import org.springframework.data.annotation.Id;
 
 @ToString
 @Setter
 @Getter
-@SuperBuilder
 @Audited
 @Entity
 public class ApprovalWorkflow extends BaseEntity {

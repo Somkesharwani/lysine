@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.0.0
 info:
   title: Lysine API
   version: 1.0
@@ -13,6 +13,18 @@ paths:
       tags: [ UserService ]
       summary: List all accounts
       operationId: getAllAccounts
+      parameters:
+        - name: role
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: companyId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
       responses:
         '200':
           description: List of all accounts
@@ -125,6 +137,53 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+  /userService/accounts/{id}/manager:
+    get:
+      tags: [ UserService ]
+      summary: Get direct manager of account
+      operationId: getManager
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Manager found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+        '404':
+          description: Manager not found
+
+  /userService/accounts/{id}/hierarchy:
+    get:
+      tags: [ UserService ]
+      summary: Get manager at hierarchy level
+      operationId: getManagerAtLevel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: level
+          in: query
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        '200':
+          description: Manager at given level
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
 
   # ──────────────────────────────────────────
   # USERGROUP ENDPOINTS
@@ -356,6 +415,13 @@ components:
             - $ref: '#/components/schemas/AccountSummary'
           nullable: true
           description: The account's direct manager, or null if none
+        role:
+          type: string
+          description: Role of the user
+          example: FINANCE
+        isActive:
+          type: boolean
+          example: true
 
     AccountSummary:
       type: object
@@ -464,6 +530,9 @@ components:
           type: string
           description: Organisation display name
           example: Lysine Corp
+        companyId:
+          type: string
+          format: uuid
 
     # ──────────────────────────────────────────
     # COMMON

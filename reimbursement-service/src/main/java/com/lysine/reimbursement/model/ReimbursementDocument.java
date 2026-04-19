@@ -17,7 +17,7 @@ public class ReimbursementDocument extends BaseEntity {
 
   private String label;
 
-  private String fileUrl;
+  private String filePath;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "reimbursement_id")

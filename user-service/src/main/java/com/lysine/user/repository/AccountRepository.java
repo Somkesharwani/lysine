@@ -28,4 +28,8 @@ public interface AccountRepository
 
   /** Check if employee ID already exists */
   boolean existsByEmpId(String empId);
+
+  List<Account> findByUserGroupId(String companyId);
+
+  List<Account> findByRoleAndUserGroupId(String role, String companyId);
 }

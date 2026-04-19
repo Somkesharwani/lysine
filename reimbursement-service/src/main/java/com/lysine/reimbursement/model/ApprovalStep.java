@@ -1,17 +1,15 @@
 package com.lysine.reimbursement.model;
 
 import com.lysine.common.model.BaseEntity;
-import com.lysine.user.model.Account;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.Id;
 
 @ToString
 @Setter
 @Getter
-@SuperBuilder
 @Entity
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"workflow_id", "step_order"})})
 public class ApprovalStep extends BaseEntity {
 
   @Id
@@ -28,18 +26,18 @@ public class ApprovalStep extends BaseEntity {
   @Enumerated(EnumType.STRING)
   private ApproverType approverType;
 
-  // MANAGER, ROLE, USER
+  private String role;
 
-  private String role; // optional (e.g. FINANCE)
+  // 🔥 FIXED
+  @Column(name = "user_id")
+  private String userId;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "user_id")
-  private Account user; // for fixed approver
-
+  @Column(nullable = false)
   @Enumerated(EnumType.STRING)
   private ApprovalMode approvalMode;
 
-  // ANY_ONE, ALL
-
   private Boolean isMandatory = true;
+
+  // future-ready
+  private Integer hierarchyLevel;
 }
