@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Lysine API
-  version: 1.0
+  version: v1.0
 
 tags:
   - name: Reimbursements

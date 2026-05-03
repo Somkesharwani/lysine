@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Lysine API
-  version: 1.0
+  version: v1.0
 
 paths:
   /reimbursements:
@@ -16,7 +16,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ReimbursementResponse'
+                $ref: '#/components/schemas/ReimbursementResponseDto'
     post:
       tags:
         - Reimbursement
@@ -48,7 +48,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorDto'
   /approve:
     get:
       tags:
@@ -61,7 +61,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ReimbursementResponse'
+                $ref: '#/components/schemas/ReimbursementResponseDto'
   /_force-model-generation:
     get:
       tags:
@@ -171,7 +171,7 @@ components:
           items:
             $ref: '#/components/schemas/ReimbursementDocumentDto'
 
-    ReimbursementResponse:
+    ReimbursementResponseDto:
       type: object
       properties:
         success:
@@ -192,7 +192,7 @@ components:
           type: string
         email:
           type: string
-    Error:
+    ErrorDto:
       type: object
       properties:
         success:

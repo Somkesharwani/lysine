@@ -33,15 +33,15 @@ public class Account extends BaseEntity {
   @Column(nullable = false)
   private String passwordHash;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  // @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_group_id", nullable = false)
-  private UserGroup company;
+  private String companyId;
 
   // 🔥 VERY IMPORTANT
   @JsonIgnore
-  @ManyToOne(fetch = FetchType.LAZY)
+  // @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "manager_id")
-  private Account manager;
+  private String managerId;
 
   @Column(nullable = false)
   private String role;

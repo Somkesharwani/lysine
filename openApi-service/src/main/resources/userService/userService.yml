@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Lysine API
-  version: 1.0
+  version: v1.0
 
 paths:
   # ──────────────────────────────────────────
@@ -33,7 +33,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/AccountResponse'
+                  $ref: '#/components/schemas/AccountResponseDto'
 
     post:
       tags: [ UserService ]
@@ -44,26 +44,26 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AccountCreateRequest'
+              $ref: '#/components/schemas/AccountCreateRequestDto'
       responses:
         '201':
           description: Account created successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountResponse'
+                $ref: '#/components/schemas/AccountResponseDto'
         '400':
           description: Validation error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorResponseDto'
         '409':
           description: Conflict — empId or email already exists
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorResponseDto'
 
   /userService/accounts/{id}:
     parameters:
@@ -73,7 +73,6 @@ paths:
         description: Account UUID
         schema:
           type: string
-          format: uuid
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
 
     get:
@@ -86,13 +85,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountResponse'
+                $ref: '#/components/schemas/AccountResponseDto'
         '404':
           description: Account not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorResponseDto'
 
     patch:
       tags: [ UserService ]
@@ -103,26 +102,26 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AccountUpdateRequest'
+              $ref: '#/components/schemas/AccountUpdateRequestDto'
       responses:
         '200':
           description: Account updated successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountResponse'
+                $ref: '#/components/schemas/AccountResponseDto'
         '400':
           description: Validation error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorResponseDto'
         '404':
           description: Account not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorResponseDto'
 
     delete:
       tags: [ UserService ]
@@ -136,7 +135,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorResponseDto'
   /userService/accounts/{id}/manager:
     get:
       tags: [ UserService ]
@@ -148,14 +147,13 @@ paths:
           required: true
           schema:
             type: string
-            format: uuid
       responses:
         '200':
           description: Manager found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountResponse'
+                $ref: '#/components/schemas/AccountResponseDto'
         '404':
           description: Manager not found
 
@@ -170,7 +168,6 @@ paths:
           required: true
           schema:
             type: string
-            format: uuid
         - name: level
           in: query
           required: true
@@ -183,7 +180,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountResponse'
+                $ref: '#/components/schemas/AccountResponseDto'
 
   # ──────────────────────────────────────────
   # USERGROUP ENDPOINTS
@@ -202,7 +199,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/UserGroupResponse'
+                  $ref: '#/components/schemas/UserGroupResponseDto'
 
     post:
       tags: [ UserService ]
@@ -213,20 +210,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserGroupCreateRequest'
+              $ref: '#/components/schemas/UserGroupCreateRequestDto'
       responses:
         '201':
           description: User group created successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserGroupResponse'
+                $ref: '#/components/schemas/UserGroupResponseDto'
         '400':
           description: Validation error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorResponseDto'
 
   /userService/user-groups/{id}:
     parameters:
@@ -249,13 +246,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserGroupResponse'
+                $ref: '#/components/schemas/UserGroupResponseDto'
         '404':
           description: User group not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorResponseDto'
 
     patch:
       tags: [ UserService ]
@@ -266,26 +263,26 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserGroupUpdateRequest'
+              $ref: '#/components/schemas/UserGroupUpdateRequestDto'
       responses:
         '200':
           description: User group updated successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserGroupResponse'
+                $ref: '#/components/schemas/UserGroupResponseDto'
         '400':
           description: Validation error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorResponseDto'
         '404':
           description: User group not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorResponseDto'
 
     delete:
       tags: [ UserService ]
@@ -299,7 +296,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorResponseDto'
 
 components:
   schemas:
@@ -308,7 +305,7 @@ components:
     # ACCOUNT — REQUEST SCHEMAS
     # ──────────────────────────────────────────
 
-    AccountCreateRequest:
+    AccountCreateRequestDto:
       type: object
       description: Payload for creating a new account
       required:
@@ -338,20 +335,21 @@ components:
           example: s3cur3P@ssw0rd
         companyId:
           type: string
-          format: uuid
           description: ID of the UserGroup this account belongs to
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         managerId:
           type: string
-          format: uuid
           nullable: true
           description: ID of the manager's account (optional)
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
 
-    AccountUpdateRequest:
+    AccountUpdateRequestDto:
       type: object
       description: Payload for updating an existing account. Only provided fields are updated.
       properties:
+        id:
+          type: string
+          description: unique Account id
         name:
           type: string
           nullable: true
@@ -371,13 +369,11 @@ components:
           example: newP@ssw0rd!
         companyId:
           type: string
-          format: uuid
           nullable: true
           description: ID of the new UserGroup
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         managerId:
           type: string
-          format: uuid
           nullable: true
           description: ID of the new manager, or null to remove manager
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
@@ -386,7 +382,7 @@ components:
     # ACCOUNT — RESPONSE SCHEMAS
     # ──────────────────────────────────────────
 
-    AccountResponse:
+    AccountResponseDto:
       type: object
       description: Full account details
       properties:
@@ -408,11 +404,10 @@ components:
           format: email
           description: Employee email address
           example: jane.doe@company.com
-        company:
-          $ref: '#/components/schemas/UserGroupSummary'
-        manager:
-          allOf:
-            - $ref: '#/components/schemas/AccountSummary'
+        companyId:
+          type: string
+        managerId:
+          type: string
           nullable: true
           description: The account's direct manager, or null if none
         role:
@@ -423,7 +418,7 @@ components:
           type: boolean
           example: true
 
-    AccountSummary:
+    AccountSummaryDto:
       type: object
       description: Lightweight account reference, used when embedding an account inside other responses
       properties:
@@ -446,7 +441,7 @@ components:
     # USERGROUP — REQUEST SCHEMAS
     # ──────────────────────────────────────────
 
-    UserGroupCreateRequest:
+    UserGroupCreateRequestDto:
       type: object
       description: Payload for creating a new user group
       required:
@@ -454,6 +449,8 @@ components:
         - orgId
         - organisationName
       properties:
+        id:
+          type: string
         name:
           type: string
           description: Name of the user group
@@ -467,7 +464,7 @@ components:
           description: Display name of the organisation
           example: Lysine Corp
 
-    UserGroupUpdateRequest:
+    UserGroupUpdateRequestDto:
       type: object
       description: Payload for updating an existing user group. Only provided fields are updated.
       properties:
@@ -491,7 +488,7 @@ components:
     # USERGROUP — RESPONSE SCHEMAS
     # ──────────────────────────────────────────
 
-    UserGroupResponse:
+    UserGroupResponseDto:
       type: object
       description: Full user group details
       properties:
@@ -513,7 +510,7 @@ components:
           description: Display name of the organisation
           example: Lysine Corp
 
-    UserGroupSummary:
+    UserGroupSummaryDto:
       type: object
       description: Lightweight user group reference embedded in account responses
       properties:
@@ -538,7 +535,7 @@ components:
     # COMMON
     # ──────────────────────────────────────────
 
-    ErrorResponse:
+    ErrorResponseDto:
       type: object
       description: Standard error response
       properties:

@@ -14,4 +14,8 @@ public class UserGroupService {
   public UserGroup getById(String id) {
     return repository.findById(id).orElseThrow(() -> new RuntimeException("Company not found"));
   }
+
+  public UserGroup createUserGroup(UserGroup userGroup) {
+    return repository.save(userGroup);
+  }
 }

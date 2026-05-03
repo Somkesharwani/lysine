@@ -40,7 +40,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
     implementation("org.hibernate.orm:hibernate-envers")
-
+    //implementation(project(":user-service"))
+    implementation(project(":openApi-service"))
     runtimeOnly("org.postgresql:postgresql")
     api("org.slf4j:slf4j-api")
 }

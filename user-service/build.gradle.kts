@@ -14,7 +14,13 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
+	implementation("org.mapstruct:mapstruct:1.5.5.Final")
 	implementation("org.hibernate.orm:hibernate-envers")
+	implementation("org.openapitools:jackson-databind-nullable:0.2.6")
+	annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	// Gradle (Kotlin DSL)
+	implementation("org.openapitools:jackson-databind-nullable:0.2.6")
 
 	runtimeOnly("org.postgresql:postgresql")
 
