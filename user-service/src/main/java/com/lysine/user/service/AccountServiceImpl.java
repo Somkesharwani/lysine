@@ -15,11 +15,13 @@ public class AccountServiceImpl {
   private final UserGroupRepository userGroupRepository;
   private final ServiceMapper serviceMapper;
 
-  public Account createAccount(Account account){
-      return accountRepository.save(account);
+  public Account createAccount(Account account) {
+    return accountRepository.save(account);
   }
 
-  public Account getAccountById(String id){
-      return accountRepository.findById(id).orElseThrow(() -> new RuntimeException("Account not found"));
+  public Account getAccountById(String id) {
+    return accountRepository
+        .findById(id)
+        .orElseThrow(() -> new RuntimeException("Account not found"));
   }
 }

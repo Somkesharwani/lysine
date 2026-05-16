@@ -20,7 +20,7 @@ public class UserGroup extends BaseEntity {
   private String name;
 
   @Column(nullable = false)
-  private String OrgId;
+  private String orgId;
 
   @Column(nullable = false)
   private String organisationName;

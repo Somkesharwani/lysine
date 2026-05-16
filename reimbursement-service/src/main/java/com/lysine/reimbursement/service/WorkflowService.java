@@ -21,12 +21,21 @@ public class WorkflowService {
       String companyId, ReimbursementType type, BigDecimal amount) {
 
     return workflowRepo
-        .findFirstByCompanyIdAndReimbursementTypeAndIsActiveTrueAndMinAmountLessThanEqualAndMaxAmountGreaterThanEqual(
+        .findFirstByOrgIdAndReimbursementTypeAndIsActiveTrueAndMinAmountLessThanEqualAndMaxAmountGreaterThanEqual(
             companyId, type, amount, amount)
         .orElseThrow(() -> new RuntimeException("No workflow found"));
   }
 
+  public List<ApprovalWorkflow> resolveWorkflow(String companyId, ReimbursementType type) {
+
+    return workflowRepo.findFirstByOrgIdAndReimbursementTypeAndIsActiveTrue(companyId, type);
+  }
+
   public List<ApprovalStep> getSteps(String workflowId) {
     return stepRepo.findByWorkflowIdOrderByStepOrderAsc(workflowId);
+  }
+
+  public ApprovalWorkflow createWorkflow(ApprovalWorkflow workflow) {
+    return workflowRepo.save(workflow);
   }
 }

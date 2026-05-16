@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 @Mapper(componentModel = "spring")
 public interface ServiceMapper {
 
-
   @Mapping(target = "passwordHash", ignore = true) // hashed in service
   @Mapping(target = "role", ignore = true) // set separately if needed
   Account toEntity(AccountCreateRequestDto dto);
@@ -33,11 +32,11 @@ public interface ServiceMapper {
 
   UserGroupResponseDto toUserGroupDto(UserGroup userGroup);
 
-
   // Wrap: String → JsonNullable<String>  ← this is what MapStruct needs
   default JsonNullable<String> toJsonNullable(String value) {
     return JsonNullable.of(value);
   }
+
   // Unwrap JsonNullable<String>
   default String fromJsonNullable(JsonNullable<String> value) {
     return (value != null && value.isPresent()) ? value.get() : null;

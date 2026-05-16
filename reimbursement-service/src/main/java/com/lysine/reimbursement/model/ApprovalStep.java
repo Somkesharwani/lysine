@@ -2,12 +2,14 @@ package com.lysine.reimbursement.model;
 
 import com.lysine.common.model.BaseEntity;
 import jakarta.persistence.*;
+import jakarta.persistence.Id;
 import lombok.*;
-import org.springframework.data.annotation.Id;
+import org.hibernate.envers.Audited;
 
 @ToString
 @Setter
 @Getter
+@Audited
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"workflow_id", "step_order"})})
 public class ApprovalStep extends BaseEntity {

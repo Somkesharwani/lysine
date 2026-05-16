@@ -14,7 +14,6 @@ import org.hibernate.envers.Audited;
 @Audited
 @Entity
 public class Reimbursement extends BaseEntity {
-
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   private String id;

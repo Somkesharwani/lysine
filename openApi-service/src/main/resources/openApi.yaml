@@ -22,7 +22,7 @@ paths:
   /userService/user-groups:
     $ref: './userService/userService.yml#/paths/~1userService~1user-groups'
   /userService/user-groups/{id}:
-    $ref: './userService/userService.yml#/paths/~1userService~1user-groups~1{id}'
+    $ref: './userService/userService.yml#/paths/~1userService~1user-groups~1{orgId}'
 
 components:
   schemas:

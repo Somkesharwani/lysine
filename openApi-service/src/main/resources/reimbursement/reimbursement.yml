@@ -16,16 +16,21 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ReimbursementResponseDto'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReimbursementDto'
     post:
       tags:
         - Reimbursement
-      summary: submit reimbursement request with attached docs and label
+
+      summary: Submit reimbursement request with attached docs and label
+
       operationId: submitReimbursement
+
       requestBody:
         required: true
         content:
-          multipart/form-data:
+          application/json:
             schema:
               type: object
               required:
@@ -33,16 +38,15 @@ paths:
               properties:
                 reimbursement:
                   $ref: '#/components/schemas/ReimbursementDto'
-            encoding:
-              reimbursement:
-                contentType: application/json
+
       responses:
         '200':
-          description: Files uploaded successfully
+          description: Reimbursement submitted successfully
           content:
             application/json:
               schema:
-                $ref : '#/components/schemas/ReimbursementDto'
+                $ref: '#/components/schemas/ReimbursementResponseDto'
+
         '400':
           description: Bad request
           content:
@@ -62,6 +66,49 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReimbursementResponseDto'
+  /approval-workflow/:
+    get:
+        tags:
+            - Reimbursement
+        summary: Get reimbursement for approver
+        operationId: getWorkflowForApprover
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetWorkflowDto'
+        responses:
+            '200':
+                description: success
+                content:
+                  application/json:
+                      schema:
+                        $ref: '#/components/schemas/WorkflowDto'
+    post:
+      tags:
+        - Reimbursement
+      summary: submit reimbursement request with attached docs and label
+      operationId: approvalWorkflow
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkflowDto'
+      responses:
+        '200':
+          description: Workflow processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkflowDto'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
   /_force-model-generation:
     get:
       tags:
@@ -192,6 +239,37 @@ components:
           type: string
         email:
           type: string
+
+    WorkflowDto:
+      type: object
+      properties:
+        reimbursementType:
+          $ref: '#/components/schemas/ReimbursementType'
+        companyId:
+          type: string
+        minAmount:
+          type: number
+          format: decimal
+        maxAmount:
+          type: number
+          format: decimal
+        isActive:
+          type: boolean
+        id:
+          type: string
+        name:
+          type: string
+    GetWorkflowDto:
+      type: object
+      properties:
+        reimbursementType:
+          $ref: '#/components/schemas/ReimbursementType'
+        companyId:
+          type: string
+        amount:
+          type: number
+          format: decimal
+
     ErrorDto:
       type: object
       properties:

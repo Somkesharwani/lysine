@@ -15,11 +15,13 @@ public class ReimbursementDocument extends BaseEntity {
   @GeneratedValue(strategy = GenerationType.UUID)
   private String id;
 
+  @Column(name = "label", nullable = false)
   private String label;
 
+  @Column(nullable = false)
   private String filePath;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "reimbursement_id")
+  @ManyToOne
+  @JoinColumn(name = "reimbursement_id", nullable = false)
   private Reimbursement reimbursement;
 }

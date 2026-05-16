@@ -4,7 +4,6 @@ import com.lysine.common.model.BaseEntity;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import lombok.ToString;
-import org.springframework.data.annotation.Id;
 
 @ToString
 @Entity

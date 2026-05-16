@@ -225,16 +225,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
 
-  /userService/user-groups/{id}:
+  /userService/user-groups/{orgId}:
     parameters:
-      - name: id
+      - name: orgId
         in: path
         required: true
         description: UserGroup UUID
         schema:
           type: string
-          format: uuid
-          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
 
     get:
       tags: [ UserService ]
