@@ -4,6 +4,16 @@ plugins {
 	id("com.diffplug.spotless")
 	id("org.springframework.boot") version "3.3.2"
 	id("io.spring.dependency-management") version "1.1.5"
+	id("org.flywaydb.flyway") version "10.10.0"
+}
+
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.postgresql:postgresql:42.7.3")
+	}
 }
 
 repositories {

@@ -1,4 +1,3 @@
-
 plugins {
 	id("java")
 	id("io.freefair.lombok")
@@ -70,19 +69,4 @@ dependencies {
 	implementation("org.flywaydb:flyway-database-postgresql")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-}
-
-flyway {
-	url = "jdbc:postgresql://localhost:5432/postgres"
-	user = "postgres"
-	password = "postgres"
-	driver = "org.postgresql.Driver"
-	schemas = arrayOf("public")
-}
-
-subprojects {
-	apply(plugin = "java")
-	tasks.register("buildAll") {
-		dependsOn(subprojects.map { it.tasks.named("build") })
-	}
 }
