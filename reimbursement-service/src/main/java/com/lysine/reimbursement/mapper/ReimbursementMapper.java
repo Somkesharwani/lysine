@@ -2,6 +2,7 @@ package com.lysine.reimbursement.mapper;
 
 import com.lysine.model.ReimbursementDocumentDto;
 import com.lysine.model.ReimbursementDto;
+import com.lysine.model.ReimbursementResponseDto;
 import com.lysine.reimbursement.model.Reimbursement;
 import com.lysine.reimbursement.model.ReimbursementDocument;
 import java.io.IOException;
@@ -22,6 +23,8 @@ public interface ReimbursementMapper {
 
   @Mapping(target = "reimbursementId", source = "reimbursement.id")
   ReimbursementDocumentDto toDto(ReimbursementDocument entity);
+
+  ReimbursementResponseDto toDtoWithDocuments(Reimbursement entity);
 
   @Mapping(target = "submittedAt", ignore = true)
   @Mapping(target = "approvedAt", ignore = true)
