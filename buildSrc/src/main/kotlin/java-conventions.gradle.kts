@@ -18,17 +18,20 @@ java {
 
 spotless {
     java {
-        target("**/*.java")
+        target("src/*/java/**/*.java")
+        targetExclude("**/.gradle/**", "**/build/**", "**/bin/**", "**/generated/**")
         googleJavaFormat("1.17.0")
     }
 
     kotlin {
-        target("**/*.kt")
+        target("src/*/kotlin/**/*.kt")
+        targetExclude("**/.gradle/**", "**/build/**", "**/bin/**", "**/generated/**")
         ktlint("0.48.2")
     }
 
     format("yaml") {
-        target("**/*.yml", "**/*.yaml")
+        target("src/*/resources/**/*.yml", "src/*/resources/**/*.yaml")
+        targetExclude("**/.gradle/**", "**/build/**", "**/bin/**", "**/generated/**")
         prettier()
     }
 }

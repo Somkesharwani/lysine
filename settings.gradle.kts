@@ -28,4 +28,8 @@ pluginManagement {
         gradlePluginPortal()
         mavenCentral()
     }
+    plugins {
+        id("io.freefair.lombok") version "8.6"
+        id("com.diffplug.spotless") version "6.22.0"
+    }
 }
